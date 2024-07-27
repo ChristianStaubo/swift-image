@@ -5,11 +5,14 @@ import TextShimmer from "@/components/magicui/text-shimmer";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useInView } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 export default function HeroSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const router = useRouter();
   return (
     <section
       id="hero"
@@ -30,7 +33,13 @@ export default function HeroSection() {
         <br className="hidden md:block" /> Tailwind CSS, React, and Framer
         Motion.
       </p>
-      <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms]">
+      <Button
+        onClick={() => {
+          // Navigate to home page
+          router.push("/home");
+        }}
+        className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms]"
+      >
         <span>Get Started for free </span>
         <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
       </Button>
